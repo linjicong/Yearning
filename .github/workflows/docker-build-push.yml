@@ -1,9 +1,9 @@
 name: yearning
 
 on:
-  release:
-    types: [published]
-  workflow_dispatch:
+  push:
+    branches:
+      - next
 
 env:
   BASEIMAGES: '3.17.3'
@@ -55,8 +55,8 @@ jobs:
             LINUX_PLA=amd64
             YEARNING_VER=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}
           tags: |
-            yeelabs/yearning:${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}
-            yeelabs/yearning
+            linjicong/yearning:${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}
+            linjicong/yearning
           labels: ${{ steps.meta.outputs.labels }}
       - name: Run the Anchore scan action itself with GitHub Advanced Security code scanning integration enabled
         uses: anchore/scan-action@v3
