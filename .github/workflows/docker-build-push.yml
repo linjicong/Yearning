@@ -1,9 +1,9 @@
 name: yearning
 
 on:
-  push:
-    branches:
-      - next
+  release:
+    types: [published]
+  workflow_dispatch:
 
 env:
   BASEIMAGES: '3.17.3'
